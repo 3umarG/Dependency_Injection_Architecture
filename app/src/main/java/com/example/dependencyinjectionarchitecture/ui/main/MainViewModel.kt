@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 
+
 /**
  * To Inject a Repository inside ViewModel we need to ...
  * Tell the Dagger that it is the ViewModel by add [ @HiltViewModel ]
@@ -20,9 +21,13 @@ import javax.inject.Inject
  * */
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val repo: Repository
+    private val repo: dagger.Lazy<Repository>
 ) : ViewModel() {
     fun print() {
-        println("PRINT ::::")
+        println("HELLO :::: PRINT ::::")
+    }
+    init {
+        repo.get()
+        println("HELLO :::: ViewModel Created !!!")
     }
 }

@@ -16,7 +16,7 @@ import javax.inject.Inject
 class MyService : Service() {
 
     @Inject
-    private lateinit var repo: Repository
+     lateinit var repo: Repository
 
     override fun onCreate() {
         super.onCreate()

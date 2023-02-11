@@ -12,7 +12,7 @@ class RepositoryImp @Inject constructor(
 ) : Repository {
     init {
         val name = applicationContext.getString(R.string.app_name)
-        println("HELLO ::: App Name is : $name")
+        println("HELLO :::: App Name is : $name")
         Log.d("AAAA", name)
     }
 
