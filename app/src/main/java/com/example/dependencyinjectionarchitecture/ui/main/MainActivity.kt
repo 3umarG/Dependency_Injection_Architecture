@@ -1,7 +1,8 @@
-package com.example.dependencyinjectionarchitecture
+package com.example.dependencyinjectionarchitecture.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.dependencyinjectionarchitecture.R
 
 
 class MainActivity : AppCompatActivity() {
