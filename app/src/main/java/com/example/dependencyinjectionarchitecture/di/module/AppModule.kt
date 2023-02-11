@@ -52,9 +52,9 @@ object AppModule {
      * There I Create Repository Provider to provide the repository dependency.
      * That provider CONSUME the api service provider from this Module.
      * */
-    @Provides
-    @Singleton
-    fun provideRepository(apiService: ApiService , app : Application): Repository {
-        return RepositoryImp(apiService , app)
-    }
+//    @Provides
+//    @Singleton
+//    fun provideRepository(apiService: ApiService , app : Application): Repository {
+//        return RepositoryImp(apiService , app)
+//    }
 }
