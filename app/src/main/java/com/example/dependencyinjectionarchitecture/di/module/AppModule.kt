@@ -1,6 +1,8 @@
 package com.example.dependencyinjectionarchitecture.di.module
 
 import com.example.dependencyinjectionarchitecture.data.remote.ApiService
+import com.example.dependencyinjectionarchitecture.data.repository.Repository
+import com.example.dependencyinjectionarchitecture.data.repository.RepositoryImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,14 +12,14 @@ import javax.inject.Singleton
 
 
 /**
-* Module : Provide all dependencies or components that my app or classes need to work
-* ex: Repository depends on ApiService & DAO , so I should provide ApiService and DAO from this module
-*
-* Module should Annotate two things :
-*  1- @Module ===> to tell dagger that is Module and all background stuff for us.
-*  2- @InstallIn(...) ===> to determine the module life time for providing its dependencies.
-*    - SingletonComponent ===> this module will live as the whole app live.
-*/
+ * Module : Provide all dependencies or components that my app or classes need to work
+ * ex: Repository depends on ApiService & DAO , so I should provide ApiService and DAO from this module
+ *
+ * Module should Annotate two things :
+ *  1- @Module ===> to tell dagger that is Module and all background stuff for us.
+ *  2- @InstallIn(...) ===> to determine the module life time for providing its dependencies.
+ *    - SingletonComponent ===> this module will live as the whole app live.
+ */
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -38,10 +40,20 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun getApiService() : ApiService{
+    fun provideApiService(): ApiService {
         return Retrofit.Builder()
             .baseUrl("http//.test.com")
             .build()
             .create(ApiService::class.java)
+    }
+
+    /**
+     * There I Create Repository Provider to provide the repository dependency.
+     * That provider CONSUME the api service provider from this Module.
+     * */
+    @Provides
+    @Singleton
+    fun provideRepository(apiService: ApiService): Repository {
+        return RepositoryImp(apiService)
     }
 }
