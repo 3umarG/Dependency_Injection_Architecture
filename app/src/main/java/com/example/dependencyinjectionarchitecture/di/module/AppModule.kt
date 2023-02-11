@@ -1,5 +1,6 @@
 package com.example.dependencyinjectionarchitecture.di.module
 
+import android.app.Application
 import com.example.dependencyinjectionarchitecture.data.remote.ApiService
 import com.example.dependencyinjectionarchitecture.data.repository.Repository
 import com.example.dependencyinjectionarchitecture.data.repository.RepositoryImp
@@ -42,7 +43,7 @@ object AppModule {
     @Singleton
     fun provideApiService(): ApiService {
         return Retrofit.Builder()
-            .baseUrl("http//.test.com")
+            .baseUrl("https://jsonplaceholder.typicode.com/")
             .build()
             .create(ApiService::class.java)
     }
@@ -53,7 +54,7 @@ object AppModule {
      * */
     @Provides
     @Singleton
-    fun provideRepository(apiService: ApiService): Repository {
-        return RepositoryImp(apiService)
+    fun provideRepository(apiService: ApiService , app : Application): Repository {
+        return RepositoryImp(apiService , app)
     }
 }

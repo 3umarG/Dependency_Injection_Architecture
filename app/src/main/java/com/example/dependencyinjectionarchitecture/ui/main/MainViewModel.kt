@@ -22,4 +22,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val repo: Repository
 ) : ViewModel() {
+    fun print() {
+        println("PRINT ::::")
+    }
 }
